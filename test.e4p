@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-6.1.dtd">
 <!-- eric project file for project test -->
-<!-- Saved: 2019-06-05, 16:47:17 -->
+<!-- Saved: 2019-06-08, 18:47:06 -->
 <!-- Copyright (C) 2019 Bill Li, billli@matrix.io -->
 <Project version="6.1">
   <Language>en_US</Language>
@@ -14,12 +14,20 @@
   <Email>billli@matrix.io</Email>
   <Eol index="0"/>
   <Sources>
+    <Source>MATRIXAppCode.py</Source>
+    <Source>Ui_MATRIXWallet.py</Source>
+    <Source>Ui_go.py</Source>
     <Source>__init__.py</Source>
   </Sources>
+  <Forms>
+    <Form>MATRIXWallet.ui</Form>
+    <Form>go.ui</Form>
+  </Forms>
   <Others>
     <Other>.gitignore</Other>
     <Other>makefile</Other>
   </Others>
+  <MainScript>Ui_MATRIXWallet.py</MainScript>
   <Vcs>
     <VcsType>Git</VcsType>
     <VcsOptions>
