@@ -614,7 +614,7 @@
      <string>配置工作账户</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="OpenExplorer_2">
+   <widget class="QPushButton" name="OpenExplorerWallet">
     <property name="geometry">
      <rect>
       <x>890</x>
@@ -630,7 +630,7 @@
      <string>在线钱包预览</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="OpenExplorer_3">
+   <widget class="QPushButton" name="OpenExplorerAccount">
     <property name="geometry">
      <rect>
       <x>890</x>
@@ -646,7 +646,7 @@
      <string>个人收益预览</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="CheckNodeSyncStatus_2">
+   <widget class="QPushButton" name="CheckNodeSyncNTP">
     <property name="geometry">
      <rect>
       <x>890</x>
@@ -660,6 +660,22 @@
     </property>
     <property name="text">
      <string>检查时钟与NTP状态</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="UploadLog">
+    <property name="geometry">
+     <rect>
+      <x>890</x>
+      <y>710</y>
+      <width>151</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>生成命令行，并启动节点</string>
+    </property>
+    <property name="text">
+     <string>上传诊断日志</string>
     </property>
    </widget>
   </widget>
