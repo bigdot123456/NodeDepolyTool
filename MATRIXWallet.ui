@@ -35,7 +35,7 @@
      <rect>
       <x>110</x>
       <y>150</y>
-      <width>571</width>
+      <width>461</width>
       <height>21</height>
      </rect>
     </property>
@@ -145,7 +145,7 @@
      <rect>
       <x>90</x>
       <y>30</y>
-      <width>591</width>
+      <width>481</width>
       <height>21</height>
      </rect>
     </property>
@@ -423,9 +423,9 @@
    <widget class="QFrame" name="frame">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>20</x>
       <y>10</y>
-      <width>831</width>
+      <width>841</width>
       <height>131</height>
      </rect>
     </property>
@@ -435,6 +435,19 @@
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
+    <widget class="QLabel" name="WalletAddressLabel">
+     <property name="geometry">
+      <rect>
+       <x>150</x>
+       <y>40</y>
+       <width>281</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>当前钱包地址无效,不操作抵押和钱包无需理会</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QPushButton" name="CompileGAN">
     <property name="geometry">
@@ -465,9 +478,9 @@
    <widget class="QPlainTextEdit" name="StatusLogText">
     <property name="geometry">
      <rect>
-      <x>460</x>
+      <x>450</x>
       <y>610</y>
-      <width>411</width>
+      <width>421</width>
       <height>74</height>
      </rect>
     </property>
@@ -678,6 +691,67 @@
      <string>上传诊断日志</string>
     </property>
    </widget>
+   <widget class="QLabel" name="WorkAccountLabel">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>170</y>
+      <width>411</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>当前账户无效</string>
+    </property>
+   </widget>
+   <zorder>frame</zorder>
+   <zorder>NewNodeDepoly</zorder>
+   <zorder>WorkAccount</zorder>
+   <zorder>NodeBootLogText</zorder>
+   <zorder>label</zorder>
+   <zorder>CheckGMANVersion</zorder>
+   <zorder>ResetNode</zorder>
+   <zorder>OpenExplorer</zorder>
+   <zorder>label_2</zorder>
+   <zorder>label_3</zorder>
+   <zorder>WalletAddress</zorder>
+   <zorder>label_4</zorder>
+   <zorder>VDepositValue</zorder>
+   <zorder>MinerradioButton</zorder>
+   <zorder>ValidatorradioButton</zorder>
+   <zorder>MDepositValue</zorder>
+   <zorder>NodeStartLogRefresh</zorder>
+   <zorder>CheckNodeSyncStatus</zorder>
+   <zorder>CheckNodeConnection</zorder>
+   <zorder>Deposit</zorder>
+   <zorder>CheckPunish</zorder>
+   <zorder>DecreaseDeposit</zorder>
+   <zorder>label_5</zorder>
+   <zorder>NodeServiceRefresh</zorder>
+   <zorder>NodeServiceText</zorder>
+   <zorder>label_6</zorder>
+   <zorder>label_7</zorder>
+   <zorder>CloseWallet</zorder>
+   <zorder>AutoCloseWallet</zorder>
+   <zorder>ConfirmWalletOP</zorder>
+   <zorder>CompileGAN</zorder>
+   <zorder>cmdLogText</zorder>
+   <zorder>StatusLogText</zorder>
+   <zorder>label_8</zorder>
+   <zorder>SetDefaultWorkDir</zorder>
+   <zorder>CurrentradioButton</zorder>
+   <zorder>Fixed1mradioButton</zorder>
+   <zorder>Fixed3MradioButton</zorder>
+   <zorder>Fixed6MradioButton</zorder>
+   <zorder>Fixed12Mradiobutton</zorder>
+   <zorder>Current2Fixed</zorder>
+   <zorder>DownloadTools</zorder>
+   <zorder>ResetNode_2</zorder>
+   <zorder>OpenExplorerWallet</zorder>
+   <zorder>OpenExplorerAccount</zorder>
+   <zorder>CheckNodeSyncNTP</zorder>
+   <zorder>UploadLog</zorder>
+   <zorder>WorkAccountLabel</zorder>
   </widget>
  </widget>
  <resources/>

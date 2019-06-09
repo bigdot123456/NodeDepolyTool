@@ -1,3 +1,4 @@
+# !/usr/bin/python
 # -*- coding: utf-8 -*-
 
 """
@@ -9,17 +10,16 @@ from PyQt5.QtWidgets import *
 
 from Ui_MATRIXWallet import Ui_MainWindow
 
-from random import randint
-
-import sys
-
-import re
+from MATRIXCmd import *
 
 
 class MainWindow(QMainWindow, Ui_MainWindow):
     """
     Class documentation goes here.
     """
+    A0_Address = ""
+    A1_Address = ""
+    Man = MATRIXCmd()
 
     def __init__(self, parent=None):
         """
@@ -31,6 +31,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         super(MainWindow, self).__init__(parent)
         self.setupUi(self)
         self.show()
+        self.cmdNum = 0
+        self.cmdErrNum = 0
+        self.cmdLog = ""
+        self.cmdErrLog = ""
 
     def closeEvent(self, event):
         reply = QMessageBox.question(self, '确认', '确认退出吗', QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
@@ -39,23 +43,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             event.accept()
         else:
             event.ignore()
-
-    def checkAddressValid(self, address):
-        inputstr = address.strip()
-        # regPattern = 'r\'^MAN\.[a-km-zA-HJ-NP-Z1-9]{25,34}\''
-        # regPattern= '''r'^MAN\.[a-km-zA-HJ-NP-Z1-9]{25,34}\''''
-        # regPattern=r'^https?:/{2}\w.+$'
-        # pattern = re.compile(regPattern) #This method is not ok!
-        pattern = re.compile(r'^MAN\.[a-km-zA-HJ-NP-Z1-9]{25,34}')
-
-        # 使用Pattern匹配文本，获得匹配结果，无法匹配时将返回None
-        match = pattern.match(inputstr)
-        if match:
-            valid_address = inputstr
-        else:
-            valid_address = []
-
-        return match, valid_address
 
     @pyqtSlot()
     def on_NewNodeDepoly_clicked(self):
@@ -66,25 +53,49 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # raise NotImplementedError
         # QMessageBox.about(self,self.WorkAccount.text(), 'Good!')
         address = self.WorkAccount.text()
-        match, valid_address = self.checkAddressValid(address)
+        match, valid_address = MATRIXCmd.checkAddressValid(address)
 
         if match:
             # 使用Match获得分组信息
-            print("Ok.")
-            QMessageBox.question(self, '提示部署输入账户为', valid_address, QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+            print("A1 account Ok.")
+            self.WorkAccountLabel.setText('A1账户正常')
+            self.A1_Address = valid_address
+            depoly_msg = '部署账户为：' + valid_address
+            QMessageBox.question(self, '提示部署输入账户为', depoly_msg, QMessageBox.Yes | QMessageBox.No,
+                                 QMessageBox.No)
         else:
-            QMessageBox.about(self, '提示请勿输入A0账户', '请输入正确的MATRIX A1账户')
+            self.WorkAccountLabel.setText('A1账户不正常，格式为MAN.XXXXX')
+            print("A1 account Error.")
 
-            self.num = randint(1, 100)
-
+            QMessageBox.about(self, '提示请勿输入A0账户', '请输入正确的MATRIX A1账户,单纯部署无需输入A0账户')
             self.WorkAccount.clear()
-
             self.WorkAccount.setFocus()
-        # guessnumber = 10
-        # int(self.WorkAccount.text())
+            return
 
-        # print(self.num)
-        # raise NotImplementedError
+        cmd = 'ls'
+        return_code, out = MATRIXCmd.execute_cmd
+        self.cmdNum = self.cmdNum + 1
+        tmpText = self.cmdLogText.getPaintContext()
+        tmpText = tmpText + '\n' + str.format('%d: ', self.cmdNum) + cmd + '\n'
+        self.cmdLogText.setPlainText(tmpText)
+
+        if return_code != 0:
+            # raise SystemExit('execute {0} err :{1}'.format(cmd, out))
+            print("execute {0} err :{1}".format(cmd, out))
+            self.cmdErrNum = self.cmdErrNum + 1
+            self.cmdErrLog = out
+
+        else:
+            self.cmdLog = out
+            print("execute command ({0} sucessful)".format(cmd))
+
+        self.StatusLogText.setPlainText(self.cmdLog)
+
+    # guessnumber = 10
+    # int(self.WorkAccount.text())
+
+    # print(self.num)
+    # raise NotImplementedError
 
     @pyqtSlot()
     def on_WorkAccount_editingFinished(self):
@@ -94,7 +105,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # TODO: not implemented yet
         # raise NotImplementedError
         address = self.WorkAccount.text()
-        match, valid_address = self.checkAddressValid(address)
+        match, valid_address = MATRIXCmd.checkAddressValid(address)
+        if match:
+            # 使用Match获得分组信息
+            print("A1 account Ok.")
+            self.WorkAccountLabel.setText('A1账户正常')
+            self.A1_Address = valid_address
+        else:
+            self.WorkAccountLabel.setText('A1账户不正常，格式为MAN.XXXXX')
+            print("A1 account Error.")
+            self.WorkAccount.clear()
+            self.WorkAccount.setFocus()
 
     @pyqtSlot()
     def on_CheckGMANVersion_clicked(self):
@@ -126,7 +147,18 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         Slot documentation goes here.
         """
         # TODO: not implemented yet
-        raise NotImplementedError
+        # raise NotImplementedError
+        address = self.WalletAddress.text()
+        match, valid_address = MATRIXCmd.checkAddressValid(address)
+        if match:
+            # 使用Match获得分组信息
+            print("A0 account Ok.")
+            self.WalletAddressLabel.setText('A0账户格式正常，但只有启动抵押和钱包功能时，才需要输入')
+        else:
+            self.WalletAddressLabel.setText('A0账户格式不正常，格式为MAN.XXXXX，')
+            print("A0 account Error.")
+            self.WalletAddress.clear()
+            # self.WalletAddress.setFocus()
 
     @pyqtSlot()
     def on_VDepositValue_editingFinished(self):
