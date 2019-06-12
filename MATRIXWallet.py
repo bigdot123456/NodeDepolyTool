@@ -73,11 +73,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             return
 
         cmd = 'ls'
-        return_code, out = MATRIXCmd.execute_cmd
+        return_code, out = MATRIXCmd.execute_cmd(cmd)
         self.cmdNum = self.cmdNum + 1
-        tmpText = self.cmdLogText.getPaintContext()
-        tmpText = tmpText + '\n' + str.format('%d: ', self.cmdNum) + cmd + '\n'
-        self.cmdLogText.setPlainText(tmpText)
+        #tmpText = self.cmdLogText.getPaintContext()
+        tmpText = f"\n{self.cmdNum}:{cmd}"
+
+        self.cmdLogText.appendPlainText(tmpText)
+        self.cmdLog = out
 
         if return_code != 0:
             # raise SystemExit('execute {0} err :{1}'.format(cmd, out))
@@ -86,10 +88,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.cmdErrLog = out
 
         else:
-            self.cmdLog = out
-            print("execute command ({0} sucessful)".format(cmd))
+             print("execute command ({0} sucessful)".format(cmd))
 
-        self.StatusLogText.setPlainText(self.cmdLog)
+        self.StatusLogText.setPlainText(f'{self.cmdLog}')
 
     # guessnumber = 10
     # int(self.WorkAccount.text())
