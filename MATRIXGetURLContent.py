@@ -20,6 +20,7 @@ import socket
 import time
 from lxml import etree
 
+import zipfile
 
 def download_from_url(url, dst):
     """
@@ -68,6 +69,7 @@ def download_from_url(url, dst):
         first_byte = 0
     if first_byte >= file_size:
         return file_size
+
     header = {"Range": "bytes=%s-%s" % (first_byte, file_size)}
     pbar = tqdm(
         total=file_size, initial=first_byte,
@@ -275,31 +277,31 @@ def findAllLink8(url):
     r = requests.get(url)
     r.encoding = 'gb2312'
 
-    print("\n Happy open.....1!")
+    #print("\n Happy open.....1!")
     # 利用 re （太黄太暴力！）
     links1 = re.findall(r"(?<=href=\").+?(?=\")|(?<=href=\').+?(?=\')", r.text)
-    for link in links1:
-        print(link)
+    # for link in links1:
+    #     print(link)
 
-    print("\n Happy open.....2!")
+    #print("\n Happy open.....2!")
     # 利用 BeautifulSoup4 （DOM树）
     links2 = set()
     soup = BeautifulSoup(r.text, 'lxml')
     for a in soup.find_all('a'):
         link = a['href']
         links2.add(link)
-        print(link)
+        #print(link)
 
-    print("\n Happy open.....3!")
+    #print("\n Happy open.....3!")
 
     # 利用 lxml.etree （XPath）
     links3 = set()
     tree = etree.HTML(r.text)
     for link in tree.xpath("//@href"):
         links3.add(link)
-        print(link)
+        #print(link)
 
-    print("\n Happy open.....4!")
+    #print("\n Happy open.....4!")
 
     links4 = set()
     soup = BeautifulSoup(r.text, 'lxml')
@@ -324,7 +326,7 @@ def findAllLink8(url):
     # for link in driver.find_elements_by_tag_name("a"):
     #     print(link.get_attribute("href"))
     # driver.close()
-    print("\n Finish Display....!")
+    #print("\n Finish Display....!")
 
     links = links1
     links = list(set(links))  # 标准去重
@@ -388,16 +390,39 @@ def filterlink(links, filename):
 
 def filterlink1(links, filename):
 
-    return map(lambda x: filename in x,links)
+    return filter(lambda x: filename in x,links)
+
+def unzipfile(zipfilename,dir):
+    zip_ref = zipfile.ZipFile(zipfilename, 'r')
+    zip_ref.extractall(dir)
+    zip_ref.close()
+
+#def cpfile(filename,dir):
+
 
 if __name__ == '__main__':
     # url = "https://www.matrix.io/uploads/file/gman(mac).zip"
     # download_from_url(url, "./Download/gman.zip")
     url = 'https://www.matrix.io/downloads/'
     links=findAllLink8(url)
-    for i in links:
-        print(i)
 
     # load_appendix(url,"a.txt")
-    result=filterlink1(links,["pdf",".zip"])
-    print(result)
+    result=filterlink1(links,"zip")
+
+    baseURL="https://www.matrix.io"
+
+    for i in result:
+        httpURLname=f"{baseURL}{i}"
+        destfilename=os.path.basename(i)
+
+        destfullfilename=f"./Download/{destfilename}"
+        #download_from_url(httpURLname, destfullfilename)
+
+        #(filepath, tempfilename) = os.path.split(filename)
+        #(shotname, extension) = os.path.splitext(tempfilename)
+        (shotname, extension) = os.path.splitext(destfilename)
+
+        print(f"unzip {destfullfilename} in {shotname}")
+        unzipfile(destfullfilename,shotname)
+
+
