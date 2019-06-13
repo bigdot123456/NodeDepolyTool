@@ -2,7 +2,11 @@ import requests
 from tqdm import tqdm
 
 import os
-from urllib.request import urlopen
+#from urllib.request import urlopen
+
+import urllib.request
+import urllib.error
+from urllib.request import *
 
 
 def download_from_url(url, dst):
@@ -10,7 +14,16 @@ def download_from_url(url, dst):
     @param: url to download file
     @param: dst place to put the file
     """
-    file_size = int(urlopen(url).info().get('Content-Length', -1))
+
+    try:
+        #u = urllib.request.urlopen(url)
+        file_size = int(urlopen(url).info().get('Content-Length', -1))
+    except urllib.error.HTTPError:
+        # 碰到了匹配但不存在的文件时，提示并返回
+        print("Downloading ",url,"with Error!\nFile not found!\nPlease Check link!\nExiting...")
+        return
+
+    #file_size = int(urlopen(url).info().get('Content-Length', -1))
 
     """
     print(urlopen(url).info())
@@ -29,7 +42,23 @@ def download_from_url(url, dst):
     x-oss-storage-class: Standard
     x-oss-server-time: 4
     """
+    filename = dst
+    # filename = "/home/mydir/test.txt"
 
+    # 将文件路径分割出来
+
+    file_dir = os.path.split(filename)[0]
+
+    # 判断文件路径是否存在，如果不存在，则创建，此处是创建多级目录
+    if not os.path.isdir(file_dir):
+        print(f"Download Program Will create directory {file_dir}")
+        os.makedirs(file_dir)
+
+    # 然后再判断文件是否存在，如果不存在，则创建
+    if not os.path.exists(filename):
+        os.system(r'touch %s' % filename)
+
+    # 断点续传
     if os.path.exists(dst):
         first_byte = os.path.getsize(dst)
     else:
@@ -51,5 +80,5 @@ def download_from_url(url, dst):
 
 
 if __name__ == '__main__':
-    url = "https://www.matrix.io/uploads/file/gman(mac).zip"
-    download_from_url(url, "./gman.zip")
+    url = "https://www.matrix.io/uploads/file/gman(mac)1.zip"
+    download_from_url(url, "./Download/gman.zip")

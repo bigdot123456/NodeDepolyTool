@@ -10,13 +10,12 @@ import platform
 import re
 import subprocess
 import rpyc
-from rpyc import Service
-from rpyc.utils.server import ThreadedServer
+#from rpyc import Service
+#from rpyc.utils.server import ThreadedServer
+#from time import sleep
+
 import threading  # 引入线程
-
-from time import sleep
-
-
+from MATRIXDownloadURL import *
 class MATRIXCmd():
     #gmanBaseURL = 'localhost'
     gmanBaseURL = "https://matrix.io/Download/"
@@ -107,20 +106,13 @@ class MATRIXCmd():
         # updateversion = 0
         # localGmanName = "gman"
 
-        GmanURL = f"{self.gmanBaseURL}/{self.Platform}/{self.updateversion}/{self.localGmanName}"
+        self.GmanURL = f"{self.gmanBaseURL}/{self.Platform}/{self.updateversion}/{self.localGmanName}.zip"
         print(f"Downloading Files from URL:{self.GmanURL}")
 
     def downloadGman(self):
         self.checkDownloadPath()
-        cmd = f"wget {self.GmanURL}"
-        returncode, out = self.execute_cmd(cmd)
-
-        if returncode != 0:
-            print('execute {0} err :{1}'.format(cmd, out))
-            self.localversion = -1
-        else:
-            print("execute command ({0} sucessful)".format(cmd))
-            self.localversion = out
+        # url = "https://www.matrix.io/uploads/file/gman(mac).zip"
+        download_from_url(self.GmanURL, "./gman.zip")
 
     def isGmanUpdate(self):
         self.checkplatform()

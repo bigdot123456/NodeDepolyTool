@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>MATRIX Blockchain_MAN Tokens Explanation Download-MATRIX Official Website</title>
+		<meta name="keywords" content="MAN Tokens,ANNOUNCEMENT, MATRIX AI Network,MAN币">
+		<meta name="description" content=" ">
+		<meta name="robots" content="index,follow,all">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="/templets/matrix/en/img/favicon.ico" rel="shortcut icon">
+		<link rel='stylesheet prefetch' href='/templets/matrix/en/css/bootstrap.min.css'>
+		<link rel="stylesheet" href="/templets/matrix/en/css/style.css">
+		<style type="text/css">
+			.Artifacts_ .ppp {
+				text-align: center;
+				padding: 0;
+				margin-top: 80px;
+			}
+			
+			.Artifacts_ .ppp li {
+				list-style: none;
+				display: inline-block;
+				width: 45%;
+				height: auto;
+				margin: 20px;
+				border: 4px solid rgba(255, 255, 255, 0.2);
+			}
+			
+			.Artifacts_ .ppp li h2,
+			.Artifacts_ .ppp li p,
+			.Artifacts_ .ppp li a {
+				text-align: center;
+			}
+			
+			.Artifacts_ .ppp li h2 {
+				display: block;
+				margin: 0 auto;
+				width: 100%;
+				height: auto;
+				padding: 15px 0px;
+				background-color: rgba(255, 255, 255, 0.1);
+				font-size: 30px;
+				color: #04FAFB;
+				font-family: 'Oswald-Medium';
+				margin-bottom: 60px;
+			}
+			
+			.Artifacts_ .ppp li p {
+				margin: 3px auto;
+				padding: 0px 20px;
+				font-family: 'STHeitiSC-Light';
+				font-size: 20px;
+				color: #c3c9d4;
+			}
+			
+			.Artifacts_ .ppp li a {
+				display: block;
+				margin: 0 auto;
+				margin-top: 40px;
+				margin-bottom: 60px;
+				width: 160px;
+				height: 50px;
+				line-height: 42px;
+				border: 4px solid rgba(195, 201, 212, 1);
+				border-radius: 50px;
+				color: #C3C9D4;
+				font-family: 'Montserrat-Medium';
+				font-size: 16px;
+			}
+			
+			.Artifacts_ .ppp li a:hover {
+				border: 4px solid rgba(18, 193, 204, 1);
+				background-color: rgba(18, 193, 204, 1);
+				color: #FFFFFF;
+				opacity: 1;
+			}
+			
+			@media only screen and (max-width: 1199px) {
+				.Artifacts_ .ppp li h2 {
+					font-size: 25px;
+				}
+			}
+			
+			@media only screen and (max-width: 991px) {
+				.Artifacts_ .ppp li {
+					margin: 20px 0;
+					width: 80%;
+				}
+			}
+			
+			@media only screen and (max-width: 512px) {
+				.Artifacts_ .ppp li {
+					margin: 20px 0;
+					width: 100%;
+				}
+			}
+		</style>
+
+	</head>
+
+	<body>
+
+		<img class="bg_img bg_img1" src="/templets/matrix/en/img/bg_1.png" alt="" /> <header id="wrapper">
+	<div class="logo_3">
+		<a href="http://www.matrix.io"><img src="/templets/matrix/en/img/logo_03.png" alt="" /></a>
+	</div>
+	<div class="overlay"></div>
+	<nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+		<ul class="nav sidebar-nav">
+			<li class="sidebar-brand"></li>
+			<li>
+				<b></b>
+				<a href="/index.html">HOME</a>
+			</li>
+			<li>
+				<b></b>
+				<a href="https://tom.matrix.io" target="_Blank">MAINNET</a>
+			</li>	
+			<li>
+				<b></b>
+				<a href="https://wallet.matrix.io/" target="_Blank">WEB WALLET</a>
+			</li>	
+			<li>
+				<b></b>
+				<a href="/team/">TEAM</a>
+			</li>
+			<li>
+				<b></b>
+				<a href="https://github.com/MatrixAINetwork" target="_Blank">DEVELOPER</a>
+			</li>
+			<li>
+				<b></b>
+				<a href="/index.html#partners">PARTNERS</a>
+			</li>
+			<li>
+				<b></b>
+				<a href="/index.html#exchanges">EXCHANGES</a>
+			</li>
+			<li>
+				<b></b>
+				<a href="/artifacts/">ARTIFACTS</a>
+			</li>
+			<li>
+				<b></b>
+				<a href="/news/">NEWS</a>
+			</li>
+			<li>
+				<b></b>
+				<a href="/faq/">FAQ</a>
+			</li>
+			<li>
+				<b></b>
+				<a href="/downloads/">DOWNLOADS</a>
+			</li>
+			<li>
+				<b></b>
+				<a href="/index.html#contact_us">CONTACT US</a>
+			</li>
+<!--					
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li class="dropdown-header"></li>
+                    <li>
+                        <a href="#"></a>
+                    </li>
+                </ul>
+            </li>
+-->
+			<div class="nav_vice">
+				<div class="nav_contact">
+					<a class="nav_telegram" href="https://t.me/matrixainetwork" target="_Blank"></a>
+					<a class="nav_facebook" href="https://www.facebook.com/MatrixAINetworks" target="_Blank"></a>
+					<a class="nav_twitter" href="https://twitter.com/MatrixAINetwork" target="_Blank"></a>
+					<a class="nav_in" href="http://www.linkedin.com/company/matrixainetwork" target="_Blank"></a>
+				</div>
+
+ 	            <div class="language">
+                		<a style="opacity: 1;" href="">EN</a> /
+                    <a href="/home_cn/index.html">中文</a> 
+				</div>
+
+				<div class="terms">
+					<a href="/terms/index.html">TERMS &amp;<br />CONDITIONS</a>
+				</div>
+			</div>
+		</ul>
+		<div class="nav_lf">
+			<ul>
+				<li>
+					<div class="partition">
+						<div class="part_0"></div>
+						<div class="part_1"></div>
+						<div class="part_0"></div>
+					</div>
+				</li>
+				<li class="active">
+					<div class="partition">
+						<div class="part_0"></div>
+						<div class="part_1"></div>
+						<div class="part_0"></div>
+					</div>
+				</li>
+
+				<li>
+					<div class="partition">
+						<div class="part_0"></div>
+						<div class="part_1"></div>
+						<div class="part_0"></div>
+					</div>
+				</li>
+
+				<li>
+					<div class="partition">
+						<div class="part_0"></div>
+						<div class="part_1"></div>
+						<div class="part_0"></div>
+					</div>
+				</li>
+				
+				<li>
+					<div class="partition">
+						<div class="part_0"></div>
+						<div class="part_1"></div>
+						<div class="part_0"></div>
+					</div>
+				</li>
+
+				<li>
+					<div class="partition">
+						<div class="part_0"></div>
+						<div class="part_1"></div>
+						<div class="part_0"></div>
+					</div>
+				</li>
+
+				<li>
+					<div class="partition">
+						<div class="part_0"></div>
+						<div class="part_1"></div>
+						<div class="part_0"></div>
+					</div>
+				</li>
+
+				<li>
+					<div class="partition">
+						<div class="part_0"></div>
+						<div class="part_1"></div>
+						<div class="part_0"></div>
+					</div>
+				</li>
+
+				<li>
+					<div class="partition">
+						<div class="part_0"></div>
+						<div class="part_1"></div>
+						<div class="part_0"></div>
+					</div>
+				</li>
+				
+				<li>
+					<div class="partition">
+						<div class="part_0"></div>
+						<div class="part_1"></div>
+						<div class="part_0"></div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<button type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas">
+    		<span class="hamb-top"></span>
+        <span class="hamb-middle"></span>
+        <span class="hamb-bottom"></span>
+   	</button>
+</header>
+
+		<div class="container subject faq_ps">
+			<h1 class="title_a">Downloads</h1>
+			<div class="Artifacts_">
+				<ul class="ppp">
+					
+					<li>
+						<h2>Matrix AI Network<br />Token Swap Manual</h2>
+						<p>Version: 1.3</p>
+						<p>Author: MATRIX Foundation Beijing Research Institute</p>
+						<p>Date: 2019/05/22</p>
+						<a href="/uploads/file/Matrix AI Network Token Swap Manual V1.3 (English).pdf" title="Matrix AI Network Token Swap Manual V1.3 (English).pdf" download="Matrix AI Network Token Swap Manual V1.3 (English).pdf" target="_Blank">Download</a>
+					</li>
+
+					<li>
+						<h2>MATRIX ONLINE WALLET<br />MANUAL</h2>
+						<p>Version: 1.3</p>
+						<p>Author: MATRIX Foundation Beijing Research Institute</p>
+						<p>Date: 2019/05/09</p>
+						<a href="/uploads/file/MATRIX_Online_Wallet_Manual.pdf" title="Download MATRIX Online Wallet Manual.PDF" download="MATRIX Online Wallet Manual.PDF" target="_Blank">Download</a>
+					</li>
+					
+					<li>
+						<h2>MATRIX BLOCKCHAIN BROWSER<br />GUIDE</h2>
+						<p>Version: 1.1</p>
+						<p>Author: MATRIX Foundation Beijing Research Institute</p>
+						<p>Date: 2019/06/06</p>
+						<a href="/uploads/file/MATRIX_Blockchain_Browser_Guide.pdf" title="Download MATRIX Blockchan Browser Guide.PDF" download="MATRIX Blockchain Browser Guide.PDF" target="_Blank">Download</a>
+					</li>
+
+					<li>
+						<h2>Matrix AI Network Port<br />50505 Opening Guide</h2>
+						<p>Version: 1.1</p>
+						<p>Author: MATRIX Foundation Beijing Research Institute</p>
+						<p>Date: 2019/05/22</p>
+						<a href="/uploads/file/Matrix_AI_Network_Port_50505_Opening_Guide.pdf" title="Matrix AI Network Port 50505 Opening Guide.pdf" download="Matrix AI Network Port 50505 Opening Guide.pdf" target="_Blank">Download</a>
+					</li>
+					
+					<li>
+						<h2>MATRIX NODE DEPLOYMENT<br />FILES AND GUIDE</h2>
+						<p>Windows Version: 2.5</p>
+						<p>Author: MATRIX Foundation Beijing Research Institute</p>
+						<p>Date: 2019/05/22</p>
+						<a href="/uploads/file/gman(windows).zip" title="Matrix Node Deployment Guide.ZIP" download="gman(windows).zip" target="_Blank">Download</a>
+					</li>
+					
+					<li>
+						<h2>MATRIX NODE DEPLOYMENT<br />FILES AND GUIDE</h2>
+						<p>Mac Version: 2.4</p>
+						<p>Author: MATRIX Foundation Beijing Research Institute</p>
+						<p>Date: 2019/05/22</p>
+						<a href="/uploads/file/gman(mac).zip" title="Matrix Node Deployment Guide.ZIP" download="gman(mac).zip" target="_Blank">Download</a>
+					</li>
+					
+					
+				</ul>
+			</div>
+		</div>
+
+		<footer id="contact_us" class="container subject">
+    <h2 class="get">Get in touch</h2>
+    <ul class="footer_link">
+        <li class="link0">
+            <a href="https://t.me/matrixainetwork" target="_Blank"></a>
+        </li>
+        <li class="link1">
+            <a href="https://medium.com/@matrixainetwork" target="_Blank"></a>
+        </li>
+        <li class="link2">
+            <a href="https://www.reddit.com/r/THEMATRIXAI/" target="_Blank"></a>
+        </li>
+        <li class="link3">
+            <a href="https://www.facebook.com/MatrixAINetworks" target="_Blank"></a>
+        </li>
+        <li class="link4">
+            <a href="https://twitter.com/MatrixAINetwork" target="_Blank"></a>
+        </li>
+        <li class="link5">
+            <a href="http://www.linkedin.com/company/matrixainetwork" target="_Blank"></a>
+        </li>
+        <li class="link6">
+            <a href="https://bitcointalk.org/index.php?topic=2669586" target="_Blank"></a>
+        </li>
+        <li class="link7">
+            <a href="https://github.com/MatrixAINetwork" target="_Blank"></a>
+        </li>
+        <li class="link8">
+            <a href="https://www.youtube.com/channel/UCA8O5qOg0nVyd-L7RaOrmUw" target="_Blank"></a>
+        </li>
+        <li class="link9">
+            <img src="/templets/matrix/en/img/ewm.jpg" class="wx">
+        </li>
+        <li class="link10">
+            <a href="mailto:%20public@matrix.io" target="_Blank"></a>
+        </li>
+        <li class="link11">
+            <a href="https://discord.gg/75qvp7N" target="_Blank"></a>
+        </li>
+    </ul>
+    <p class="mail">Send us a question <b>public@matrix.io</b></p>
+    <div class="copyright">
+        <img src="/templets/matrix/en/img/ai.png" />
+        <p>Copyright &copy; 2018-2019 MATRIX Foundation</p>
+    </div>
+</footer>
+
+
+	</body>
+
+	<script type="text/javascript" src="/templets/matrix/en/js/jquery.min.js"></script>
+	<script type="text/javascript" src='/templets/matrix/en/js/bootstrap.min.js'></script>
+	<script type="text/javascript" src='/templets/matrix/en/js/script.js'></script>
+	<script>
+		var _hmt = _hmt || [];
+		(function() {
+			var hm = document.createElement("script");
+			hm.src = "https://hm.baidu.com/hm.js?2182add7d6d90f74221ed8caf94f3b4f";
+			var s = document.getElementsByTagName("script")[0];
+			s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+
+</html>
