@@ -2,25 +2,35 @@ import requests
 import bs4
 import urllib
 import urllib.request
+import platform
+import sys
+import stat
+import os
+import signal
+import re
+import csv
+import socket
+import time
+import chardet
+import shutil
+
+import zipfile
+import logging
+import hashlib
 
 from tqdm import tqdm
 
-import os
-
-import re
-import csv
-import chardet
 from urllib.parse import urljoin
 from urllib.request import urlopen
 from urllib import request
 from bs4 import BeautifulSoup
 from urllib.request import urlretrieve
 from selenium import webdriver
-import socket
-import time
 from lxml import etree
 
-import zipfile
+import psutil
+
+
 
 def download_from_url(url, dst):
     """
@@ -60,7 +70,10 @@ def download_from_url(url, dst):
 
     # 然后再判断文件是否存在，如果不存在，则创建
     if not os.path.exists(filename):
-        os.system(r'touch %s' % filename)
+        # os.system(r'touch %s' % filename)
+        print(f"opening {filename}....")
+        with open(filename, "a") as f:
+            pass
 
     # 断点续传
     if os.path.exists(dst):
@@ -277,31 +290,31 @@ def findAllLink8(url):
     r = requests.get(url)
     r.encoding = 'gb2312'
 
-    #print("\n Happy open.....1!")
+    # print("\n Happy open.....1!")
     # 利用 re （太黄太暴力！）
     links1 = re.findall(r"(?<=href=\").+?(?=\")|(?<=href=\').+?(?=\')", r.text)
     # for link in links1:
     #     print(link)
 
-    #print("\n Happy open.....2!")
+    # print("\n Happy open.....2!")
     # 利用 BeautifulSoup4 （DOM树）
     links2 = set()
     soup = BeautifulSoup(r.text, 'lxml')
     for a in soup.find_all('a'):
         link = a['href']
         links2.add(link)
-        #print(link)
+        # print(link)
 
-    #print("\n Happy open.....3!")
+    # print("\n Happy open.....3!")
 
     # 利用 lxml.etree （XPath）
     links3 = set()
     tree = etree.HTML(r.text)
     for link in tree.xpath("//@href"):
         links3.add(link)
-        #print(link)
+        # print(link)
 
-    #print("\n Happy open.....4!")
+    # print("\n Happy open.....4!")
 
     links4 = set()
     soup = BeautifulSoup(r.text, 'lxml')
@@ -326,11 +339,12 @@ def findAllLink8(url):
     # for link in driver.find_elements_by_tag_name("a"):
     #     print(link.get_attribute("href"))
     # driver.close()
-    #print("\n Finish Display....!")
+    # print("\n Finish Display....!")
 
     links = links1
     links = list(set(links))  # 标准去重
     return links
+
 
 def get_static_url_content(url, encoding='utf-8', timeout=socket._GLOBAL_DEFAULT_TIMEOUT):
     '''
@@ -377,8 +391,7 @@ def load_appendix(url, filename):
 
 
 def filterlink(links, filename):
-
-    filterlinks=set()
+    filterlinks = set()
     for item in links:
         for singlefile in filename:
             if singlefile in links[item]:
@@ -388,41 +401,342 @@ def filterlink(links, filename):
 
     return filterlinks
 
+
 def filterlink1(links, filename):
+    return filter(lambda x: filename in x, links)
 
-    return filter(lambda x: filename in x,links)
 
-def unzipfile(zipfilename,dir):
+def unzipfile(zipfilename, dir):
     zip_ref = zipfile.ZipFile(zipfilename, 'r')
+    if os.path.exists(dir):
+        print(f"Delete the outdated download directory {dir}")
+        shutil.rmtree(dir)
+
     zip_ref.extractall(dir)
     zip_ref.close()
 
-#def cpfile(filename,dir):
+
+def cpfile(filename, dir):
+    # if os.path.exists(dir):
+    try:
+        shutil.copy(filename, dir)
+    except IOError as e:
+        print("Unable to copy file. %s" % e)
+    except:
+        print("Unexpected error:", sys.exc_info())
 
 
-if __name__ == '__main__':
-    # url = "https://www.matrix.io/uploads/file/gman(mac).zip"
-    # download_from_url(url, "./Download/gman.zip")
-    url = 'https://www.matrix.io/downloads/'
-    links=findAllLink8(url)
+def finddir(startdir, target):
+    try:
+        os.chdir(startdir)  # 切换目录
+    except:
+        return
+    for new_dir in os.listdir(os.curdir):  # 列表出该目录下的所有文件(返回当前目录'.')
+        print(new_dir)
+        if new_dir == target:
+            filefullname = os.getcwd() + os.sep + new_dir
+            print(f"find file with filefullname")
+            return filefullname
+        if os.path.isdir(new_dir):  # 判断路径是否存在
+            finddir(new_dir, target)
+            os.chdir(os.pardir)  # 切换到当前目录的父目录
+
+
+def searchFile(key, startPath='.'):
+    if not os.path.isdir(startPath):
+        raise ValueError
+    l = [os.path.join(startPath, x) for x in os.listdir(startPath)]  # 列出所有文件的绝对路径
+    # listdir出来的相对路径 不能用于 isfile  abspath只能用在当前目录
+    filelist = [x for x in l if os.path.isfile(x) if key in os.path.splitext(os.path.basename(x))[0]]  # 文件
+    # 只查找文件名中  不包括后缀 文件路径
+    if not hasattr(searchFile, 'basePath'):  # 把函数当成类 添加属性
+        searchFile.basePath = startPath  # 只有第一次调用才会赋值给basePath
+    outmap = map(lambda x: os.path.relpath(x, searchFile.basePath), filelist)  # 转换成相对于初始路径的相对路径
+
+    outlist = list(outmap)
+
+    dirlist = [x for x in l if os.path.isdir(x)]  # 目录
+    for dir in dirlist:
+        outlist = outlist + searchFile(key, dir)
+
+    return outlist
+
+
+# def cpfile(filename,dir):
+def out_md5(src):
+    # 简单封装
+    m = hashlib.md5()
+    m.update(src.encode('utf-8'))
+    return m.hexdigest()
+
+
+def check_md5(filename):
+    try:
+        with open('1.txt', 'r') as f:
+            src = f.read()
+            m1 = out_md5(src)
+            # print(m1)
+        return m1
+    except IOError as e:
+        logging.error(e)
+        return 0
+
+
+def check_hash(filename, method='md5'):
+    try:
+        if (method.lower() == 'md5'):
+            result = hashlib.md5(open(filename, 'rb').read()).hexdigest()
+        elif (method.lower() == 'sha-1'):
+            result = hashlib.sha1(open(filename, 'rb').read()).hexdigest()
+        elif (method.lower() == 'sha-256'):
+            result = hashlib.sha256(open(filename, 'rb').read()).hexdigest()
+        elif (method.lower() == 'sha-512'):
+            result = hashlib.sha512(open(filename, 'rb').read()).hexdigest()
+        else:
+            print('[-]Please input a correct encryption algorithm.')
+
+        print(result)
+        return result
+    except:
+        print('[*]Usage: python check_hash.py [Filename] [MD5|SHA-1|SHA-256|SHA-512]')
+        print('[-]Please input a correct filename.')
+
+
+import datetime
+
+
+# 获取时间函数，把当前时间格式化为str类型nowdate.strftime('%Y-%m-%d %H:%M:%S')
+def getLastDate():
+    print("当前时间： ", time.strftime('%Y.%m.%d %H:%M:%S ', time.localtime(time.time())))
+    return datetime.datetime.now().strftime('%Y-%m-%d_%H_%M_%S')
+
+
+def searchAllFile(dir_path):
+    try:
+        for root, dirs, files in os.walk(dir_path):
+            for filename in files:
+                print("file:%s\n" % filename)
+            for dirname in dirs:
+                print("dir:%s\n" % dirname)
+    except IOError as e:
+        print("error with IO1!")
+        logging.error(e)
+        return ''
+
+
+def searchFilename(name, dir_path='.'):
+    try:
+        for root, dirs, files in os.walk(dir_path):  # path 为根目录
+            # if name in dirs or name in files:
+            if name in files:
+                # flag = 1      #判断是否找到文件
+                # dirs = str(dirs)
+                root = str(root)
+                return os.path.join(root, name)
+        return ''
+    except IOError as e:
+        print("error with IO!")
+        logging.error(e)
+        return 0
+
+
+def searchDirname(name, dir_path='.'):
+    try:
+        for root, dirs, files in os.walk(dir_path):  # path 为根目录
+            # if name in dirs or name in files:
+            if name in dirs:
+                # flag = 1      #判断是否找到文件
+                # dirs = str(dirs)
+                root = str(root)
+                return os.path.join(root, name)
+        return ''
+
+    except IOError as e:
+        print("error with IO2!")
+        logging.error(e)
+        return 0
+
+
+def autoDownloadGman(infourl='https://www.matrix.io/downloads/', backupdir="backup",
+                     downloadbaseURL="https://www.matrix.io"):
+    links = findAllLink8(infourl)
 
     # load_appendix(url,"a.txt")
-    result=filterlink1(links,"zip")
+    result = filterlink1(links, "zip")
 
-    baseURL="https://www.matrix.io"
+    # downloadbaseURL = "https://www.matrix.io"
+
+    timestamp = getLastDate()
+    timestamp = "2019-06-14_14_14_21"
+
+    # backupdir = "backup"
+    workdir = "work"
+
+    sysstr = platform.system()
+    if (sysstr == "Windows"):
+        # print("Now We will do Windows tasks")
+        Platform = "Windows"
+        GmanDir = "gman(windows)"
+        GmanName = "gman.exe"
+    elif (sysstr == "Linux"):
+        # print("Now We will do Linux tasks")
+        Platform = "Linux"
+        GmanDir = "gman(linux)"
+        GmanName = "gman"
+    elif (sysstr == "Darwin"):
+        # print("Now We will do MacOS tasks")
+        Platform = "Darwin"
+        GmanDir = "gman(mac)"
+        GmanName = "gman"
+    else:
+        Platform = "Windows"
+        GmanDir = "gman(windows)"
+        GmanName = "gman.exe"
+        # print("Other System tasks")
 
     for i in result:
-        httpURLname=f"{baseURL}{i}"
-        destfilename=os.path.basename(i)
+        httpURLname = f"{downloadbaseURL}{i}"
+        destfilename = os.path.basename(i)
 
-        destfullfilename=f"./Download/{destfilename}"
-        #download_from_url(httpURLname, destfullfilename)
+        destfullfilename = f"./Download/{timestamp}/{destfilename}"
 
-        #(filepath, tempfilename) = os.path.split(filename)
-        #(shotname, extension) = os.path.splitext(tempfilename)
+        # download_from_url(httpURLname, destfullfilename)
+
+        # (filepath, tempfilename) = os.path.split(filename)
+        # (shotname, extension) = os.path.splitext(tempfilename)
         (shotname, extension) = os.path.splitext(destfilename)
 
-        print(f"unzip {destfullfilename} in {shotname}")
-        unzipfile(destfullfilename,shotname)
+        print(f"unzip {destfullfilename} in {backupdir}/{shotname}")
+        unzipfile(destfullfilename, f"{backupdir}/{shotname}")
+
+    Mypath = searchDirname(GmanDir, backupdir)
+    if Mypath == "":
+        print("error in unzip files")
+        return ""
+
+    Myfile = searchFilename(GmanName, Mypath)
+    if Myfile == "":
+        print(f"Can't open the main execute file {GmanName}")
+        return ""
+
+    return Myfile
 
 
+def mkdir(path):
+    # 去除首位空格
+    path = path.strip()
+    # 去除尾部 \ 符号
+    path = path.rstrip("\\")
+
+    # 判断路径是否存在
+    # 存在     True
+    # 不存在   False
+    isExists = os.path.exists(path)
+
+    # 判断结果
+    if not isExists:
+        # 如果不存在则创建目录
+        # 创建目录操作函数
+        os.makedirs(path)
+        print(f"{path}创建成功")
+        return True
+    else:
+        # 如果目录存在则不创建，并提示目录已存在
+        isdir = os.path.isdir(path)
+        if isdir:
+            print(f"{path}目录已存在")
+            return False
+        else:
+            print(f"{path}文件已存在，需要删除")
+            os.remove(path)
+            os.makedirs(path)
+            print(f"{path}创建成功")
+            return True
+
+
+def autoDeployGman(fileName, workdir='work'):
+    if not os.path.exists(fileName):
+        print("please Check file, It doesn't exist!")
+        return -1
+
+    chaindir = workdir + os.sep + 'chaindata'
+    mkdir(workdir)
+    mkdir(chaindir)
+
+    (filepath, tempfilename) = os.path.split(fileName)
+    fileGmandest = workdir + os.sep + tempfilename
+    os.chmod(fileGmandest, stat.S_IRWXU | stat.S_IRWXG | stat.S_IRWXO)  # mode:777
+    print(f"Copy {fileName} to {workdir} & chmod 777 {fileGmandest}")
+    cpfile(fileName, workdir)
+
+    fileGenesis = 'MANGenesis.json'
+    fileman = 'man.json'
+
+    fileGenesisSrc = filepath + os.sep + fileGenesis
+    fileGenesisdest = workdir + os.sep + fileGenesis
+
+    filemanSrc = filepath + os.sep + 'chaindata' + os.sep + fileman
+    filemandest = workdir + os.sep + 'chaindata' + os.sep + fileman
+
+    if os.path.exists(fileGenesisdest):
+        print(f"We don't change {fileGenesisdest}, If you want change it, please first delete it in {workdir}")
+    else:
+        print(f"Copy {fileGenesisSrc} to {workdir}")
+        cpfile(fileGenesisSrc, workdir)
+
+    if os.path.exists(filemandest):
+        print(f"We don't change {filemandest}, If you want change it, please first delete it in {workdir}")
+    else:
+        print(f"Copy {filemanSrc} to {workdir}")
+        cpfile(filemanSrc, chaindir)
+
+
+def autoRmOldGman(fileName, workdir='work'):
+    (filepath, tempfilename) = os.path.split(fileName)
+    fileGmandest = workdir + os.sep + tempfilename
+    if os.path.exists(fileGmandest):
+        # 删除文件，可使用以下两种方法。
+        os.remove(fileGmandest)
+        # os.unlink(my_file)
+    else:
+        print("Old Gman doesn't exists!")
+
+
+def killpid(pid):
+    try:
+        a = os.kill(pid, signal.SIGKILL)
+        print('已杀死pid为%s的进程,　返回值是:%s' % (pid, a))
+    except OSError:
+        print('没有如此进程!!!')
+
+def processinfo(processName):
+    pids = psutil.pids()
+    pidlist = []
+    for pid in pids:
+        # print(pid)
+        p = psutil.Process(pid)
+        # print(p.name)
+        if processName in p.name():
+            print(pid)
+            pidlist.append(pid)  # 如果找到该进程则打印它的PID，返回true
+
+    return pidlist  # 没有找到该进程，返回false
+
+def autokillGman():
+    pidlist = processinfo('gman')
+
+    for pid in pidlist:
+        os.killpid(pid)
+
+def autoRunGman():
+    print("run Gman")
+    
+
+if __name__ == '__main__':
+    url = 'https://www.matrix.io/downloads/'
+    Myfile = autoDownloadGman(url)
+    print(Myfile)
+    autoDeployGman(Myfile)
+    autoRunGman()
+    autokillGman()
+    autoRmOldGman()

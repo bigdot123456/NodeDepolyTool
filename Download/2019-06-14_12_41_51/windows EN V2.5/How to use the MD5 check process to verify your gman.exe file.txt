@@ -1,0 +1,15 @@
+How to use the MD5 check process to verify your gman.exe file
+
+1. Launch windows Command Prompt (run cmd.exe), Ensure that Command Prompt is engaging with your ¡°gman (windows)¡± folder. 
+Details on how to do so van be found in the Matrix AI Network Node Deployment Guide
+
+2. Enter command:
+certutil -hashfile gman.exe MD5
+
+2. Command line should output an md5 result similar to: 
+
+a64a8acdf0ff190a2aabffcd5a27e047
+
+3. If the md5 result does not match  a64a8acdf0ff190a2aabffcd5a27e047, you need to download the gman files again. If there is a match, then there is no problem.
+
+Note: Please verify that you are using the newest version of the gman files before starting. Up-to-date files can be downloaded from the Matrix website

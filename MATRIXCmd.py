@@ -16,6 +16,7 @@ import rpyc
 
 import threading  # 引入线程
 from MATRIXDownloadURL import *
+
 class MATRIXCmd():
     #gmanBaseURL = 'localhost'
     gmanBaseURL = "https://matrix.io/Download/"
