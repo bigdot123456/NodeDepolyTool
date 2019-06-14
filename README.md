@@ -5,10 +5,38 @@
 ```linux
  python ./MATRIXCmd.py
 ```
+Normal Node start:
+```
+cd work
+./gman --datadir ./chaindata  init MANGenesis.json 
+```
 
 First command  
+```
 ./gman --datadir ./chaindata --syncmode "full" --manAddress "MAN.CrsnQSJJfGxpb2taGhChLuyZwZJo" --testmode Yeying1021!@# --entrust ./entrust.json   
+```
 
+ipc connect
+```
+./gman attach ./chaindata/gman.ipc
+```
+rpc start
+```
+gman --datadir./chaindata --rpc --rpcaddr 0.0.0.0 --rpccorsdomain '*' --networkid 1 --debug --verbosity 5 --gcmode archive --outputinfo 1 --syncmode 'full'    
+```
+
+wallet account generation
+```
+  personal.newAccount('password')
+ 
+```
+
+加密keystore  
+
+./gman  --datadir ./chaindata aes --aesin Signature.json --aesout ./entrust.json  
+
+
+ --manAddress MAN.2UMgrmoFTq2urw1xKBgx5XfpFnhR3 --entrust /home/matrix/entrust.json
 
 1.--manAddress "MAN.CrsnQSJJfGxpb2taGhChLuyZwZJo" 地址更改为本机A1账户  
 2.--entrust ./entrust.json 将"./entrust.json" 改为自己的entrust文件路径  
