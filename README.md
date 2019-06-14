@@ -22,13 +22,19 @@ ipc connect
 ```
 rpc start
 ```
-gman --datadir./chaindata --rpc --rpcaddr 0.0.0.0 --rpccorsdomain '*' --networkid 1 --debug --verbosity 5 --gcmode archive --outputinfo 1 --syncmode 'full'    
+./gman --datadir ./chaindata --rpc --rpcaddr 0.0.0.0 --rpccorsdomain '*' --networkid 1 --debug --verbosity 5 --gcmode archive --outputinfo 1 --syncmode 'full'    
 ```
 
 wallet account generation
 ```
   personal.newAccount('password')
- 
+  
+  echo "personal.newAccount('xxx')" | ./gman attach ./chaindata/gman.ipc | grep ^\"MAN
+ ls chaindata/keystore
+UTC--2019-06-14T09-29-19.066727000Z--MAN.UJX8DvDrjautigK8A2jGm9eojMwH	UTC--2019-06-14T09-29-52.551644000Z--MAN.D8bTbv4JNqTx1BXKzX8Vcejd68tG
+
+net.peerCount
+
 ```
 
 加密keystore  
