@@ -1,12 +1,13 @@
+import os
+import urllib.error
+import urllib.request
+from urllib.request import *
+
 import requests
 from tqdm import tqdm
 
-import os
-#from urllib.request import urlopen
 
-import urllib.request
-import urllib.error
-from urllib.request import *
+# from urllib.request import urlopen
 
 
 def download_from_url(url, dst):
@@ -80,5 +81,5 @@ def download_from_url(url, dst):
 
 
 if __name__ == '__main__':
-    url = "https://www.matrix.io/uploads/file/gman(mac)1.zip"
+    url = "https://www.matrix.io/uploads/file/gman(mac).zip"
     download_from_url(url, "./Download/gman.zip")

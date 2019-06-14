@@ -1,9 +1,10 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from subprocess import Popen, PIPE
-import fcntl, os
+import fcntl
+import os
 import time
+from subprocess import Popen, PIPE
 
 
 class Server(object):
@@ -16,9 +17,10 @@ class Server(object):
         flags = fcntl.fcntl(self.process.stdout, fcntl.F_GETFL)
         fcntl.fcntl(self.process.stdout, fcntl.F_SETFL, flags | os.O_NONBLOCK)
 
-    def send(self, data, tail='\n'):
-        self.process.stdin.write(data + tail)
-        self.process.stdin.flush()
+    def send(self, data):
+        subcmd = bytes(data + "\n", encoding="utf8")
+        self.process.stdin.write(subcmd)
+#        self.process.stdin.flush()
 
     def recv(self, t=.1, e=1, tr=5, stderr=0):
         time.sleep(t)
@@ -44,12 +46,20 @@ class Server(object):
 
 
 if __name__ == "__main__":
-    fullcmd= """
-        work/gman --datadir ./work/chaindata --entrust ./entrust.json --syncmode "full" --manAddress "MAN.CrsnQSJJfGxpb2taGhChLuyZwZJo" --testmode Yeying1021! 
-        """
-    ServerArgs = ['work/gman', '--datadir ./work/chaindata --syncmode "full" --manAddress "MAN.CrsnQSJJfGxpb2taGhChLuyZwZJo" --testmode Yeying1021!@# --entrust ./entrust.json']
+    cmd = "./gman --datadir ./chaindata --rpc --rpcaddr 0.0.0.0 --rpccorsdomain '*' --networkid 1 --debug --verbosity 5 --gcmode archive --outputinfo 1 --syncmode 'full'    "
+    ServerArgs = ["./gman",
+                  " --datadir ./chaindata --rpc --rpcaddr 0.0.0.0 --rpccorsdomain '*' --networkid 1 --debug --verbosity 5 --gcmode archive --outputinfo 1 --syncmode 'full'  "]
+
+    workdir = "work"
+    rootdir = os.getcwd()
+    os.chdir(workdir)
+
     server = Server(ServerArgs)
     test_data = 'aa', 'vv', 'ccc', 'ss', 'ss', 'xx'
     for x in test_data:
         server.send(x)
-        print(x, server.recv())
+        consoleoutput=server.recv()
+        output = str(consoleoutput, 'utf-8')
+        print(f"cmd execute result:\n{output}")
+
+    os.chdir(rootdir)

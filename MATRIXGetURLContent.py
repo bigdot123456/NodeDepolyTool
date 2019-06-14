@@ -1,35 +1,32 @@
-import requests
-import bs4
+import csv
+import hashlib
+import logging
+import os
+import platform
+import re
+import shutil
+import signal
+import socket
+import stat
+import subprocess
+import sys
+import time
 import urllib
 import urllib.request
-import platform
-import sys
-import stat
-import os
-import signal
-import re
-import csv
-import socket
-import time
-import chardet
-import shutil
-
 import zipfile
-import logging
-import hashlib
-
-from tqdm import tqdm
-
+from urllib import request
 from urllib.parse import urljoin
 from urllib.request import urlopen
-from urllib import request
-from bs4 import BeautifulSoup
 from urllib.request import urlretrieve
-from selenium import webdriver
-from lxml import etree
 
+import bs4
+import chardet
 import psutil
-
+import requests
+from bs4 import BeautifulSoup
+from lxml import etree
+from selenium import webdriver
+from tqdm import tqdm
 
 
 def download_from_url(url, dst):
@@ -567,7 +564,7 @@ def autoDownloadGman(infourl='https://www.matrix.io/downloads/', backupdir="back
     # downloadbaseURL = "https://www.matrix.io"
 
     timestamp = getLastDate()
-    timestamp = "2019-06-14_14_14_21"
+    #timestamp = "2019-06-14_16_58_17"
 
     # backupdir = "backup"
     workdir = "work"
@@ -600,7 +597,7 @@ def autoDownloadGman(infourl='https://www.matrix.io/downloads/', backupdir="back
 
         destfullfilename = f"./Download/{timestamp}/{destfilename}"
 
-        # download_from_url(httpURLname, destfullfilename)
+        download_from_url(httpURLname, destfullfilename)
 
         # (filepath, tempfilename) = os.path.split(filename)
         # (shotname, extension) = os.path.splitext(tempfilename)
@@ -665,9 +662,9 @@ def autoDeployGman(fileName, workdir='work'):
 
     (filepath, tempfilename) = os.path.split(fileName)
     fileGmandest = workdir + os.sep + tempfilename
-    os.chmod(fileGmandest, stat.S_IRWXU | stat.S_IRWXG | stat.S_IRWXO)  # mode:777
     print(f"Copy {fileName} to {workdir} & chmod 777 {fileGmandest}")
     cpfile(fileName, workdir)
+    os.chmod(fileGmandest, stat.S_IRWXU | stat.S_IRWXG | stat.S_IRWXO)  # mode:777
 
     fileGenesis = 'MANGenesis.json'
     fileman = 'man.json'
@@ -709,6 +706,7 @@ def killpid(pid):
     except OSError:
         print('没有如此进程!!!')
 
+
 def processinfo(processName):
     pids = psutil.pids()
     pidlist = []
@@ -722,21 +720,36 @@ def processinfo(processName):
 
     return pidlist  # 没有找到该进程，返回false
 
+
 def autokillGman():
     pidlist = processinfo('gman')
 
     for pid in pidlist:
         os.killpid(pid)
 
-def autoRunGman():
-    print("run Gman")
-    
+# cd work
+# ./gman --datadir ./chaindata  init MANGenesis.json
+
+def initGman(workdir='work'):
+    rootdir = os.getcwd()
+    os.chdir(workdir)
+    cmd = "./gman --datadir ./chaindata  init MANGenesis.json"
+    print(f"Init Gman with command:\ncd {workdir};\n./gman --datadir ./chaindata  init MANGenesis.json \n\n")
+    child1 = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
+    outs, errs = child1.communicate()
+
+    # output=str(outs).decode('string_escape')
+    output = str(outs, 'utf-8')
+    print(f"cmd execute result:\n{output}")
+    os.chdir(rootdir)
+
 
 if __name__ == '__main__':
     url = 'https://www.matrix.io/downloads/'
     Myfile = autoDownloadGman(url)
-    print(Myfile)
     autoDeployGman(Myfile)
-    autoRunGman()
-    autokillGman()
-    autoRmOldGman()
+    #autoRunGman()
+    # autokillGman()
+    # autoRmOldGman('gman')
+    initGman()
+    #autoRunNormalGman()
