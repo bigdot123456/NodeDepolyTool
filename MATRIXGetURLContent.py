@@ -1,9 +1,13 @@
+import bs4
+import chardet
 import csv
 import hashlib
 import logging
 import os
 import platform
+import psutil
 import re
+import requests
 import shutil
 import signal
 import socket
@@ -14,19 +18,14 @@ import time
 import urllib
 import urllib.request
 import zipfile
-from urllib import request
-from urllib.parse import urljoin
-from urllib.request import urlopen
-from urllib.request import urlretrieve
-
-import bs4
-import chardet
-import psutil
-import requests
 from bs4 import BeautifulSoup
 from lxml import etree
 from selenium import webdriver
 from tqdm import tqdm
+from urllib import request
+from urllib.parse import urljoin
+from urllib.request import urlopen
+from urllib.request import urlretrieve
 
 
 def download_from_url(url, dst):
@@ -725,7 +724,7 @@ def autokillGman():
     pidlist = processinfo('gman')
 
     for pid in pidlist:
-        os.killpid(pid)
+        killpid(pid)
 
 # cd work
 # ./gman --datadir ./chaindata  init MANGenesis.json
@@ -733,8 +732,8 @@ def autokillGman():
 def initGman(workdir='work'):
     rootdir = os.getcwd()
     os.chdir(workdir)
-    cmd = "./gman --datadir ./chaindata  init MANGenesis.json"
-    print(f"Init Gman with command:\ncd {workdir};\n./gman --datadir ./chaindata  init MANGenesis.json \n\n")
+    cmd = f".{os.sep}gman --datadir ./chaindata  init MANGenesis.json"
+    print(f"Init Gman with command:\ncd {workdir};\n.{os.sep}gman --datadir ./chaindata  init MANGenesis.json \n\n")
     child1 = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
     outs, errs = child1.communicate()
 

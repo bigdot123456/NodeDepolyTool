@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-6.1.dtd">
 <!-- eric project file for project test -->
-<!-- Saved: 2019-06-09, 14:03:06 -->
+<!-- Saved: 2019-06-17, 14:13:56 -->
 <!-- Copyright (C) 2019 Bill Li, billli@matrix.io -->
 <Project version="6.1">
   <Language>en_US</Language>
@@ -15,12 +15,15 @@
   <Eol index="0"/>
   <Sources>
     <Source>MATRIXAppCode.py</Source>
+    <Source>MATRIXNodeMonitor.py</Source>
     <Source>MATRIXWallet.py</Source>
+    <Source>Ui_MATRIXNodeMonitor.py</Source>
     <Source>Ui_MATRIXWallet.py</Source>
     <Source>Ui_go.py</Source>
     <Source>__init__.py</Source>
   </Sources>
   <Forms>
+    <Form>MATRIXNodeMonitor.ui</Form>
     <Form>MATRIXWallet.ui</Form>
     <Form>go.ui</Form>
   </Forms>
@@ -28,7 +31,7 @@
     <Other>.gitignore</Other>
     <Other>makefile</Other>
   </Others>
-  <MainScript>MATRIXWallet.py</MainScript>
+  <MainScript>Ui_MATRIXNodeMonitor.py</MainScript>
   <Vcs>
     <VcsType>Git</VcsType>
     <VcsOptions>

@@ -4,18 +4,21 @@
 """
 Module implementing MainWindow.
 """
-import sys
 import os
 import platform
 import re
-import subprocess
 import rpyc
-#from rpyc import Service
-#from rpyc.utils.server import ThreadedServer
-#from time import sleep
-
+import subprocess
+import sys
 import threading  # 引入线程
+from typing import List, Any
+
 from MATRIXDownloadURL import *
+
+
+# from rpyc import Service
+# from rpyc.utils.server import ThreadedServer
+# from time import sleep
 
 class MATRIXCmd():
     #gmanBaseURL = 'localhost'
@@ -150,6 +153,7 @@ class MATRIXCmd():
 
     def MATRIXVersionRPC(self, host, port):
         # 参数主要是host, port
+
         try:
 
             conn = rpyc.connect(host, port)
@@ -158,18 +162,15 @@ class MATRIXCmd():
             result = conn.root.testVersion()
             print(f"MATRIX Version is {result} ")
             # test是服务端的那个以"exposed_"开头的方法
+            self.updateversion = result
+            conn.close()
+
         except (ConnectionError, TimeoutError) as e:
-            conn.disconnect()
-            if not (conn.retry_on_timeout and
-                    isinstance(e, TimeoutError)):
-                raise
-            print("Check MATRIX GMAN Service Connection!")
+            # conn.disconnect()
+
+            print("Check MATRIX GMAN Service Connection!No Server with RPC....\n\n")
         else:
             print("RPC connect OK! Do more job with RPC server!")
-
-        self.updateversion = result
-
-        conn.close()
 
     def _execute(self, connection, command, *args):
         try:
