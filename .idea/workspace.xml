@@ -5,13 +5,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/test2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/test2.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MATRIXCmd.py" beforeDir="false" afterPath="$PROJECT_DIR$/MATRIXCmd.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MATRIXGetURLContent.py" beforeDir="false" afterPath="$PROJECT_DIR$/MATRIXGetURLContent.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MATRIXNodeMonitor.py" beforeDir="false" afterPath="$PROJECT_DIR$/MATRIXNodeMonitor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MATRIXNodeMonitor.ui" beforeDir="false" afterPath="$PROJECT_DIR$/MATRIXNodeMonitor.ui" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ui_MATRIXWallet.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ui_MATRIXWallet.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ui_go.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ui_go.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.e4p" beforeDir="false" afterPath="$PROJECT_DIR$/test.e4p" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,10 +20,7 @@
         <entry file="file://$PROJECT_DIR$/MATRIXCmd.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="2873">
-              <caret line="169" column="78" selection-start-line="169" selection-start-column="78" selection-end-line="169" selection-end-column="78" />
-              <folding>
-                <element signature="e#84#94#0" expanded="true" />
-              </folding>
+              <caret line="170" column="78" selection-start-line="170" selection-start-column="78" selection-end-line="170" selection-end-column="78" />
             </state>
           </provider>
         </entry>
@@ -36,11 +28,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MATRIXGetURLContent.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5797">
-              <caret line="341" column="34" selection-start-line="341" selection-start-column="34" selection-end-line="341" selection-end-column="34" />
-              <folding>
-                <element signature="e#0#10#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="5780">
+              <caret line="340" column="34" selection-start-line="340" selection-start-column="34" selection-end-line="340" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -60,8 +49,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MATRIXRunCMD.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1020">
-              <caret line="60" column="35" selection-start-line="60" selection-start-column="35" selection-end-line="60" selection-end-column="35" />
+            <state relative-caret-position="250">
+              <caret line="39" column="25" selection-start-line="39" selection-start-column="25" selection-end-line="39" selection-end-column="25" />
               <folding>
                 <element signature="e#43#55#0" expanded="true" />
               </folding>
@@ -81,10 +70,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MATRIXNodeMonitor.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="429">
-              <caret line="80" column="45" lean-forward="true" selection-start-line="80" selection-start-column="45" selection-end-line="80" selection-end-column="45" />
+            <state relative-caret-position="187">
+              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
               <folding>
-                <element signature="e#46#82#0" expanded="true" />
+                <element signature="e#46#88#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -380,7 +369,7 @@
       <workItem from="1560743299919" duration="2639000" />
       <workItem from="1560768155742" duration="280000" />
       <workItem from="1560768834204" duration="60000" />
-      <workItem from="1560769021029" duration="292000" />
+      <workItem from="1560769021029" duration="1404000" />
     </task>
     <task id="LOCAL-00001" summary="change with download function">
       <created>1560432212592</created>
@@ -396,11 +385,18 @@
       <option name="project" value="LOCAL" />
       <updated>1560511230126</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="change with download function">
+      <created>1560769365300</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1560769365300</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="79556000" />
+    <option name="totallyTimeSpent" value="80668000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -488,6 +484,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="change with download function" />
     <option name="LAST_COMMIT_MESSAGE" value="change with download function" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -510,17 +508,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/MATRIXGetURLContent.py</url>
-          <line>442</line>
+          <line>441</line>
           <option name="timeStamp" value="19" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/MATRIXGetURLContent.py</url>
-          <line>749</line>
+          <line>748</line>
           <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/MATRIXGetURLContent.py</url>
-          <line>571</line>
+          <line>570</line>
           <option name="timeStamp" value="28" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -532,8 +530,8 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/test2$MATRIXNodeMonitor.coverage" NAME="MATRIXNodeMonitor Coverage Results" MODIFIED="1560740204960" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/test2$Ui_MATRIXNodeMonitor.coverage" NAME="Ui_MATRIXNodeMonitor Coverage Results" MODIFIED="1560769112742" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/test2$MATRIXNodeMonitor.coverage" NAME="MATRIXNodeMonitor Coverage Results" MODIFIED="1560770047623" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/test2$Ui_MATRIXNodeMonitor.coverage" NAME="Ui_MATRIXNodeMonitor Coverage Results" MODIFIED="1560770531099" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/test2$MATRIXRunCMD.coverage" NAME="MATRIXRunCMD Coverage Results" MODIFIED="1560509964147" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/test2$MATRIXGetURLContent.coverage" NAME="MATRIXGetURLContent Coverage Results" MODIFIED="1560502636590" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/test2$MATRIXWallet.coverage" NAME="MATRIXWallet Coverage Results" MODIFIED="1560737733491" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -642,20 +640,14 @@
     <entry file="file://$PROJECT_DIR$/MATRIXCmd.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2873">
-          <caret line="169" column="78" selection-start-line="169" selection-start-column="78" selection-end-line="169" selection-end-column="78" />
-          <folding>
-            <element signature="e#84#94#0" expanded="true" />
-          </folding>
+          <caret line="170" column="78" selection-start-line="170" selection-start-column="78" selection-end-line="170" selection-end-column="78" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MATRIXGetURLContent.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5797">
-          <caret line="341" column="34" selection-start-line="341" selection-start-column="34" selection-end-line="341" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="5780">
+          <caret line="340" column="34" selection-start-line="340" selection-start-column="34" selection-end-line="340" selection-end-column="34" />
         </state>
       </provider>
     </entry>
@@ -666,16 +658,6 @@
             <caret line="14" column="3" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
           </first_editor>
           <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MATRIXRunCMD.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
-          <caret line="60" column="35" selection-start-line="60" selection-start-column="35" selection-end-line="60" selection-end-column="35" />
-          <folding>
-            <element signature="e#43#55#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -716,12 +698,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/MATRIXRunCMD.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="39" column="25" selection-start-line="39" selection-start-column="25" selection-end-line="39" selection-end-column="25" />
+          <folding>
+            <element signature="e#43#55#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/MATRIXNodeMonitor.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="80" column="45" lean-forward="true" selection-start-line="80" selection-start-column="45" selection-end-line="80" selection-end-column="45" />
+        <state relative-caret-position="187">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
           <folding>
-            <element signature="e#46#82#0" expanded="true" />
+            <element signature="e#46#88#0" expanded="true" />
           </folding>
         </state>
       </provider>

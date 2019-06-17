@@ -1,12 +1,10 @@
 """
 Module implementing  MATRIXTabWidget.
 """
-from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5 import QtWebEngineWidgets
+from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtWidgets import QTabWidget
 
-from MATRIXCmd import *
 from Ui_MATRIXNodeMonitor import Ui_TabWidget
 
 
@@ -25,6 +23,8 @@ class MATRIXTabWidget(QTabWidget, Ui_TabWidget):
         super(MATRIXTabWidget, self).__init__(parent)
         self.setupUi(self)
         self.show()
+        self.setWindowFlags(QtCore.Qt.WindowMinimizeButtonHint)
+        self.setFixedSize(self.width(), self.height())
 
     @pyqtSlot()
     def on_ConfirmDeposit_clicked(self):

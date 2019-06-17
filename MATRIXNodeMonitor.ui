@@ -14,7 +14,7 @@
    <string>MATRIX节点部署与状态监测</string>
   </property>
   <property name="currentIndex">
-   <number>2</number>
+      <number>0</number>
   </property>
   <property name="elideMode">
    <enum>Qt::ElideLeft</enum>
@@ -23,194 +23,103 @@
    <attribute name="title">
     <string>账户设置</string>
    </attribute>
-      <widget class="QLabel" name="MainAccountLabel">
-    <property name="geometry">
-     <rect>
-         <x>20</x>
-      <y>10</y>
-      <width>51</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>钱包账户</string>
-    </property>
-   </widget>
-      <widget class="QLabel" name="CurrentAccountStatusLabel">
-    <property name="geometry">
-     <rect>
-         <x>20</x>
-         <y>50</y>
-      <width>191</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>查询当前账户状态</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="CloseWallet">
-    <property name="geometry">
-     <rect>
-         <x>110</x>
-         <y>160</y>
-         <width>241</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="text">
-        <string>关闭钱包，然后访问账户状态网页</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="WalletAddress">
-    <property name="geometry">
-     <rect>
-         <x>90</x>
-         <y>10</y>
-      <width>491</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>MAN账户钱包地址填充，切勿输入私钥。</string>
-    </property>
-   </widget>
-   <widget class="QTextBrowser" name="CurrentAccountLog">
-    <property name="geometry">
-     <rect>
-         <x>20</x>
-         <y>70</y>
-      <width>491</width>
-      <height>81</height>
-     </rect>
-    </property>
-   </widget>
-      <widget class="QLabel" name="WebStatusLabel">
-    <property name="geometry">
-     <rect>
-         <x>10</x>
-         <y>170</y>
-      <width>91</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>网页访问状态</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="openKeystore">
-    <property name="geometry">
-     <rect>
-         <x>840</x>
-         <y>20</y>
-      <width>201</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>打开本地钱包keystore操作</string>
-    </property>
-   </widget>
-      <widget class="QWebEngineView" name="webEngineView" native="true">
-    <property name="geometry">
-     <rect>
-         <x>10</x>
-      <y>210</y>
-         <width>1051</width>
-      <height>421</height>
-     </rect>
-    </property>
-          <property name="url" stdset="0">
-     <url>
-      <string>about:blank</string>
-     </url>
-    </property>
-   </widget>
-      <widget class="QPlainTextEdit" name="TransferCashNum">
-    <property name="geometry">
-     <rect>
-         <x>550</x>
-         <y>130</y>
-      <width>261</width>
-         <height>21</height>
-     </rect>
-    </property>
-   </widget>
-      <widget class="QPlainTextEdit" name="TransferCash2Account">
-    <property name="geometry">
-     <rect>
-         <x>550</x>
-         <y>75</y>
-      <width>261</width>
-         <height>21</height>
-     </rect>
-    </property>
-   </widget>
-      <widget class="QLabel" name="TransferAccountLabel">
-    <property name="geometry">
-     <rect>
-         <x>550</x>
-         <y>50</y>
-      <width>191</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>给某个账户转账：</string>
-    </property>
-   </widget>
-      <widget class="QLabel" name="TransferCashNumLabel">
-    <property name="geometry">
-     <rect>
-         <x>550</x>
-         <y>110</y>
-      <width>191</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>给账户转账金额：</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="ConfirmTransfer2others">
-    <property name="geometry">
-     <rect>
-         <x>840</x>
-         <y>80</y>
-      <width>201</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>给别人转账</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="TransferHash">
-    <property name="geometry">
-     <rect>
-         <x>850</x>
-      <y>130</y>
-      <width>191</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>转账结果与Hash</string>
-    </property>
-   </widget>
-      <widget class="QPushButton" name="OpenOnlineWallet">
-          <property name="geometry">
-              <rect>
-                  <x>380</x>
-                  <y>160</y>
-                  <width>291</width>
-                  <height>41</height>
-              </rect>
-          </property>
-          <property name="text">
-              <string>开启在线钱包，注意保存私钥，防止黑客</string>
-          </property>
-      </widget>
+      <layout class="QGridLayout" name="gridLayout_2">
+          <item row="0" column="0">
+              <widget class="QLabel" name="MainAccountLabel">
+                  <property name="text">
+                      <string>钱包账户</string>
+                  </property>
+              </widget>
+          </item>
+          <item row="5" column="5">
+              <widget class="QLabel" name="TransferHash">
+                  <property name="text">
+                      <string>转账结果与Hash</string>
+                  </property>
+              </widget>
+          </item>
+          <item row="6" column="0" colspan="2">
+              <widget class="QLabel" name="WebStatusLabel">
+                  <property name="text">
+                      <string>网页访问状态</string>
+                  </property>
+              </widget>
+          </item>
+          <item row="6" column="3" colspan="2">
+              <widget class="QPushButton" name="OpenOnlineWallet">
+                  <property name="text">
+                      <string>开启在线钱包，注意保存私钥，防止黑客</string>
+                  </property>
+              </widget>
+          </item>
+          <item row="7" column="0" colspan="6">
+              <widget class="QWebEngineView" name="webEngineView">
+                  <property name="url">
+                      <url>
+                          <string>about:blank</string>
+                      </url>
+                  </property>
+              </widget>
+          </item>
+          <item row="1" column="0" colspan="3">
+              <widget class="QLabel" name="CurrentAccountStatusLabel">
+                  <property name="text">
+                      <string>查询当前账户状态</string>
+                  </property>
+              </widget>
+          </item>
+          <item row="1" column="4">
+              <widget class="QLabel" name="TransferAccountLabel">
+                  <property name="text">
+                      <string>给某个账户转账：</string>
+                  </property>
+              </widget>
+          </item>
+          <item row="3" column="0" rowspan="3" colspan="4">
+              <widget class="QTextBrowser" name="CurrentAccountLog"/>
+          </item>
+          <item row="6" column="2">
+              <widget class="QPushButton" name="CloseWallet">
+                  <property name="text">
+                      <string>关闭钱包，然后访问账户状态网页</string>
+                  </property>
+              </widget>
+          </item>
+          <item row="4" column="4">
+              <widget class="QLabel" name="TransferCashNumLabel">
+                  <property name="text">
+                      <string>给账户转账金额：</string>
+                  </property>
+              </widget>
+          </item>
+          <item row="0" column="1" colspan="4">
+              <widget class="QLineEdit" name="WalletAddress">
+                  <property name="text">
+                      <string>MAN账户钱包地址填充，切勿输入私钥。</string>
+                  </property>
+              </widget>
+          </item>
+          <item row="0" column="5">
+              <widget class="QPushButton" name="openKeystore">
+                  <property name="text">
+                      <string>打开本地钱包keystore操作</string>
+                  </property>
+              </widget>
+          </item>
+          <item row="3" column="4">
+              <widget class="QPlainTextEdit" name="TransferCash2Account"/>
+          </item>
+          <item row="5" column="4">
+              <widget class="QPlainTextEdit" name="TransferCashNum"/>
+          </item>
+          <item row="3" column="5">
+              <widget class="QPushButton" name="ConfirmTransfer2others">
+                  <property name="text">
+                      <string>给别人转账</string>
+                  </property>
+              </widget>
+          </item>
+      </layout>
   </widget>
   <widget class="QWidget" name="Node">
    <attribute name="title">
@@ -461,7 +370,7 @@
          <x>890</x>
          <y>540</y>
          <width>151</width>
-         <height>51</height>
+         <height>71</height>
      </rect>
     </property>
           <property name="toolTip">
@@ -534,7 +443,7 @@
     </property>
     <property name="text">
         <string>关闭钱包
-            (安全第一）
+            (安全第一)
         </string>
     </property>
    </widget>
@@ -686,29 +595,14 @@
     <property name="geometry">
      <rect>
          <x>70</x>
-         <y>160</y>
+         <y>180</y>
       <width>100</width>
-      <height>51</height>
+         <height>31</height>
      </rect>
     </property>
     <property name="text">
         <string>单干
             自己起节点
-        </string>
-    </property>
-   </widget>
-   <widget class="QRadioButton" name="attendSuperNode">
-    <property name="geometry">
-     <rect>
-         <x>70</x>
-         <y>279</y>
-      <width>100</width>
-         <height>41</height>
-     </rect>
-    </property>
-    <property name="text">
-        <string>追随他人
-            加入超级节点
         </string>
     </property>
    </widget>
@@ -832,14 +726,29 @@
             <property name="geometry">
                 <rect>
                     <x>10</x>
-                    <y>70</y>
+                    <y>60</y>
                     <width>100</width>
-                    <height>31</height>
+                    <height>51</height>
                 </rect>
             </property>
             <property name="text">
                 <string>自己领头
-                    创建超级节点
+                    建超级节点
+                </string>
+            </property>
+        </widget>
+        <widget class="QRadioButton" name="attendSuperNode">
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>110</y>
+                    <width>100</width>
+                    <height>61</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>追随他人
+                    加入超级节点
                 </string>
             </property>
         </widget>
@@ -912,7 +821,7 @@
        <widget class="QLineEdit" name="AttendSupernodeAccount">
            <property name="geometry">
                <rect>
-                   <x>180</x>
+                   <x>200</x>
                    <y>170</y>
                    <width>501</width>
                    <height>21</height>
@@ -933,7 +842,7 @@
            </property>
            <property name="text">
                <string>确认抵押
-                   （谨慎操作）
+                   （谨慎操作)
                </string>
            </property>
        </widget>
@@ -984,7 +893,6 @@
    <zorder>GenerateA1</zorder>
    <zorder>openSuperNodeKeystore</zorder>
    <zorder>StandloneNode</zorder>
-   <zorder>attendSuperNode</zorder>
    <zorder>SuperNodeCmd</zorder>
          <zorder>executeCmdLabel</zorder>
    <zorder>SuperNodeLog</zorder>
@@ -999,8 +907,8 @@
    </attribute>
       <layout class="QGridLayout" name="gridLayout">
           <item row="0" column="0">
-              <widget class="QWebEngineView" name="webEngineViewMainnet" native="true">
-                  <property name="url" stdset="0">
+              <widget class="QWebEngineView" name="webEngineViewMainnet">
+                  <property name="url">
                       <url>
                           <string>https://kfc.matrix.io/home</string>
                       </url>
