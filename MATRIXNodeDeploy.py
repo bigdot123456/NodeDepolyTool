@@ -1,189 +1,113 @@
-"""
-Module implementing  MATRIXTabWidget.
-"""
-from PyQt5 import QtCore, QtWidgets
-#from PyQt5.QtCore import pyqtSlot
-#from PyQt5.QtWidgets import QTabWidget
+# -*- coding: utf-8 -*-
 
-from Ui_MATRIXNodeMonitor import Ui_TabWidget
+"""
+Module implementing MATRIXNodeDeploy.
+"""
+
 from PyQt5.QtCore import pyqtSlot
-from PyQt5.QtWidgets import *
+from PyQt5.QtWidgets import QMainWindow
 
-class MATRIXTabWidget(QTabWidget, Ui_TabWidget):
+from U_MATRIXWallet import Ui_MainWindow
+
+
+class MATRIXNodeDeploy(QMainWindow, Ui_MainWindow):
     """
     Class documentation goes here.
     """
-    A0_Address = ""
-    A1_Address = ""
-    cmdNum = 0
-    cmdErrNum = 0
-    cmdLog = ""
-    cmdErrLog = ""
-
-    @pyqtSlot()
     def __init__(self, parent=None):
         """
         Constructor
-
+        
         @param parent reference to the parent widget
         @type QWidget
         """
-        super(MATRIXTabWidget, self).__init__(parent)
+        super(MATRIXNodeDeploy, self).__init__(parent)
         self.setupUi(self)
-        self.show()
-        self.setWindowFlags(QtCore.Qt.WindowMinimizeButtonHint)
-        self.setFixedSize(self.width(), self.height())
-        print("Start MATRIX World!")
-
+    
     def closeEvent(self, event):
-        """
-        重写closeEvent方法，实现dialog窗体关闭时执行一些代码
-        :param event: close()触发的事件
-        :return: None
-        """
-        reply = QtWidgets.QMessageBox.question(self,
-                                               '本程序',
-                                               "是否要退出程序？",
-                                               QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No,
-                                               QtWidgets.QMessageBox.No)
-        if reply == QtWidgets.QMessageBox.Yes:
+        reply = QMessageBox.question(self, '确认', '确认退出吗', QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+
+        if reply == QMessageBox.Yes:
             event.accept()
         else:
             event.ignore()
 
     @pyqtSlot()
-    def on_ConfirmDeposit_clicked(self):
-        """
-        Slot documentation goes here.
-        """
-        # TODO: not implemented yet
-        raise NotImplementedError
-
-    @pyqtSlot()
-    def on_CloseSuperNodeWallet_clicked(self):
-        """
-        Slot documentation goes here.
-        """
-        # TODO: not implemented yet
-        raise NotImplementedError
-
-    @pyqtSlot()
-    def on_Fixed3MradioButton_clicked(self):
-        """
-        Slot documentation goes here.
-        """
-        # TODO: not implemented yet
-        raise NotImplementedError
-
-    @pyqtSlot(bool)
-    def on_AutoCloseWalletCheckBox_clicked(self, checked):
-        """
-        Slot documentation goes here.
-
-        @param checked DESCRIPTION
-        @type bool
-        """
-        # TODO: not implemented yet
-        raise NotImplementedError
-
-    @pyqtSlot()
-    def on_Fixed6MradioButton_clicked(self):
-        """
-        Slot documentation goes here.
-        """
-        # TODO: not implemented yet
-        raise NotImplementedError
-
-    @pyqtSlot()
-    def on_Fixed1mradioButton_clicked(self):
-        """
-        Slot documentation goes here.
-        """
-        # TODO: not implemented yet
-        raise NotImplementedError
-
-    @pyqtSlot()
-    def on_Fixed12Mradiobutton_clicked(self):
-        """
-        Slot documentation goes here.
-        """
-        # TODO: not implemented yet
-        raise NotImplementedError
-
-    @pyqtSlot()
-    def on_DecreaseDeposit_clicked(self):
-        """
-        Slot documentation goes here.
-        """
-        # TODO: not implemented yet
-        raise NotImplementedError
-
-    @pyqtSlot()
-    def on_Current2Fixed_clicked(self):
-        """
-        Slot documentation goes here.
-        """
-        # TODO: not implemented yet
-        raise NotImplementedError
-
-    @pyqtSlot()
-    def on_MinerradioButton_clicked(self):
-        """
-        Slot documentation goes here.
-        """
-        # TODO: not implemented yet
-        raise NotImplementedError
-
-    @pyqtSlot()
-    def on_CurrentradioButton_clicked(self):
-        """
-        Slot documentation goes here.
-        """
-        # TODO: not implemented yet
-        raise NotImplementedError
-
-    @pyqtSlot()
-    def on_GenerateA1_clicked(self):
-        """
-        Slot documentation goes here.
-        """
-        # TODO: not implemented yet
-        raise NotImplementedError
-
-    @pyqtSlot()
-    def on_openSuperNodeKeystore_clicked(self):
-        """
-        Slot documentation goes here.
-        """
-        # TODO: not implemented yet
-        raise NotImplementedError
-
-    @pyqtSlot()
-    def on_StandloneNode_clicked(self):
-        """
-        Slot documentation goes here.
-        """
-        # TODO: not implemented yet
-        raise NotImplementedError
-
-    @pyqtSlot()
-    def on_CreateSuperNode_clicked(self):
-        """
-        Slot documentation goes here.
-        """
-        # TODO: not implemented yet
-        raise NotImplementedError
-
-    @pyqtSlot()
-    def on_AttendSupernodeAccount_editingFinished(self):
-        """
-        Slot documentation goes here.
-        """
-        # TODO: not implemented yet
-        raise NotImplementedError
-
-    @pyqtSlot()
     def on_NewNodeDepoly_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+        # TODO: not implemented yet
+        # raise NotImplementedError
+        # QMessageBox.about(self,self.WorkAccount.text(), 'Good!')
+        address = self.WorkAccount.text()
+        match, valid_address = MATRIXCmd.checkAddressValid(address)
+
+        if match:
+            # 使用Match获得分组信息
+            print("A1 account Ok.")
+            self.WorkAccountLabel.setText('A1账户正常')
+            self.A1_Address = valid_address
+            depoly_msg = '部署账户为：' + valid_address
+            QMessageBox.question(self, '提示部署输入账户为', depoly_msg, QMessageBox.Yes | QMessageBox.No,
+                                 QMessageBox.No)
+        else:
+            self.WorkAccountLabel.setText('A1账户不正常，格式为MAN.XXXXX')
+            print("A1 account Error.")
+
+            QMessageBox.about(self, '提示请勿输入A0账户', '请输入正确的MATRIX A1账户,单纯部署无需输入A0账户')
+            self.WorkAccount.clear()
+            self.WorkAccount.setFocus()
+            return
+
+        cmd = 'ls'
+        return_code, out = MATRIXCmd.execute_cmd(cmd)
+        self.cmdNum = self.cmdNum + 1
+        #tmpText = self.cmdLogText.getPaintContext()
+        tmpText = f"\n{self.cmdNum}:{cmd}"
+
+        self.cmdLogText.appendPlainText(tmpText)
+        self.cmdLog = out
+
+        if return_code != 0:
+            # raise SystemExit('execute {0} err :{1}'.format(cmd, out))
+            print("execute {0} err :{1}".format(cmd, out))
+            self.cmdErrNum = self.cmdErrNum + 1
+            self.cmdErrLog = out
+
+        else:
+             print("execute command ({0} sucessful)".format(cmd))
+
+        self.StatusLogText.setPlainText(f'{self.cmdLog}')
+
+    # guessnumber = 10
+    # int(self.WorkAccount.text())
+
+    # print(self.num)
+    # raise NotImplementedError
+
+    @pyqtSlot()
+    def on_WorkAccount_editingFinished(self):
+        """
+        Slot documentation goes here.
+        """
+        # TODO: not implemented yet
+        # raise NotImplementedError
+        address = self.WorkAccount.text()
+        match, valid_address = MATRIXCmd.checkAddressValid(address)
+        if match:
+            # 使用Match获得分组信息
+            print("A1 account Ok.")
+            self.WorkAccountLabel.setText('A1账户正常')
+            self.A1_Address = valid_address
+        else:
+            self.WorkAccountLabel.setText('A1账户不正常，格式为MAN.XXXXX')
+            print("A1 account Error.")
+            self.WorkAccount.clear()
+            self.WorkAccount.setFocus()
+
+    @pyqtSlot()
+    def on_CheckGMANVersion_clicked(self):
         """
         Slot documentation goes here.
         """
@@ -199,7 +123,66 @@ class MATRIXTabWidget(QTabWidget, Ui_TabWidget):
         raise NotImplementedError
 
     @pyqtSlot()
-    def on_CheckNodeSyncNTP_clicked(self):
+    def on_OpenExplorer_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+        # TODO: not implemented yet
+        raise NotImplementedError
+
+    @pyqtSlot()
+    def on_WalletAddress_editingFinished(self):
+        """
+        Slot documentation goes here.
+        """
+        # TODO: not implemented yet
+        # raise NotImplementedError
+        address = self.WalletAddress.text()
+        match, valid_address = MATRIXCmd.checkAddressValid(address)
+        if match:
+            # 使用Match获得分组信息
+            print("A0 account Ok.")
+            self.WalletAddressLabel.setText('A0账户格式正常，但只有启动抵押和钱包功能时，才需要输入')
+        else:
+            self.WalletAddressLabel.setText('A0账户格式不正常，格式为MAN.XXXXX，')
+            print("A0 account Error.")
+            self.WalletAddress.clear()
+            # self.WalletAddress.setFocus()
+
+    @pyqtSlot()
+    def on_VDepositValue_editingFinished(self):
+        """
+        Slot documentation goes here.
+        """
+        # TODO: not implemented yet
+        raise NotImplementedError
+
+    @pyqtSlot()
+    def on_MinerradioButton_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+        # TODO: not implemented yet
+        raise NotImplementedError
+
+    @pyqtSlot()
+    def on_ValidatorradioButton_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+        # TODO: not implemented yet
+        raise NotImplementedError
+
+    @pyqtSlot()
+    def on_MDepositValue_editingFinished(self):
+        """
+        Slot documentation goes here.
+        """
+        # TODO: not implemented yet
+        raise NotImplementedError
+
+    @pyqtSlot()
+    def on_NodeStartLogRefresh_clicked(self):
         """
         Slot documentation goes here.
         """
@@ -223,7 +206,7 @@ class MATRIXTabWidget(QTabWidget, Ui_TabWidget):
         raise NotImplementedError
 
     @pyqtSlot()
-    def on_OpenExplorer_clicked(self):
+    def on_Deposit_clicked(self):
         """
         Slot documentation goes here.
         """
@@ -239,7 +222,7 @@ class MATRIXTabWidget(QTabWidget, Ui_TabWidget):
         raise NotImplementedError
 
     @pyqtSlot()
-    def on_NodeInit_clicked(self):
+    def on_DecreaseDeposit_clicked(self):
         """
         Slot documentation goes here.
         """
@@ -247,7 +230,7 @@ class MATRIXTabWidget(QTabWidget, Ui_TabWidget):
         raise NotImplementedError
 
     @pyqtSlot()
-    def on_DownloadProgramfromOfficial_clicked(self):
+    def on_NodeServiceRefresh_clicked(self):
         """
         Slot documentation goes here.
         """
@@ -263,7 +246,7 @@ class MATRIXTabWidget(QTabWidget, Ui_TabWidget):
         raise NotImplementedError
 
     @pyqtSlot()
-    def on_openKeystore_clicked(self):
+    def on_ConfirmWalletOP_clicked(self):
         """
         Slot documentation goes here.
         """
@@ -271,7 +254,7 @@ class MATRIXTabWidget(QTabWidget, Ui_TabWidget):
         raise NotImplementedError
 
     @pyqtSlot()
-    def on_ConfirmTransfer2others_clicked(self):
+    def on_CompileGAN_clicked(self):
         """
         Slot documentation goes here.
         """
@@ -279,7 +262,7 @@ class MATRIXTabWidget(QTabWidget, Ui_TabWidget):
         raise NotImplementedError
 
     @pyqtSlot()
-    def on_attendSuperNode_clicked(self):
+    def on_SetDefaultWorkDir_clicked(self):
         """
         Slot documentation goes here.
         """
@@ -287,7 +270,7 @@ class MATRIXTabWidget(QTabWidget, Ui_TabWidget):
         raise NotImplementedError
 
     @pyqtSlot()
-    def on_MDepositValue_editingFinished(self):
+    def on_CurrentradioButton_clicked(self):
         """
         Slot documentation goes here.
         """
@@ -295,7 +278,7 @@ class MATRIXTabWidget(QTabWidget, Ui_TabWidget):
         raise NotImplementedError
 
     @pyqtSlot()
-    def on_VDepositValue_editingFinished(self):
+    def on_Fixed3MradioButton_clicked(self):
         """
         Slot documentation goes here.
         """
@@ -303,7 +286,7 @@ class MATRIXTabWidget(QTabWidget, Ui_TabWidget):
         raise NotImplementedError
 
     @pyqtSlot()
-    def on_AutoCloseWalletCheckBox_clicked(self):
+    def on_Fixed6MradioButton_clicked(self):
         """
         Slot documentation goes here.
         """
@@ -311,7 +294,7 @@ class MATRIXTabWidget(QTabWidget, Ui_TabWidget):
         raise NotImplementedError
 
     @pyqtSlot()
-    def on_ValidatorradioButton_clicked(self):
+    def on_Fixed12Mradiobutton_clicked(self):
         """
         Slot documentation goes here.
         """
@@ -319,7 +302,7 @@ class MATRIXTabWidget(QTabWidget, Ui_TabWidget):
         raise NotImplementedError
 
     @pyqtSlot()
-    def on_entrustAccount_editingFinished(self):
+    def on_Current2Fixed_clicked(self):
         """
         Slot documentation goes here.
         """
@@ -327,7 +310,7 @@ class MATRIXTabWidget(QTabWidget, Ui_TabWidget):
         raise NotImplementedError
 
     @pyqtSlot()
-    def on_ViewSynchronousStatus_clicked(self):
+    def on_DownloadTools_clicked(self):
         """
         Slot documentation goes here.
         """
@@ -335,7 +318,7 @@ class MATRIXTabWidget(QTabWidget, Ui_TabWidget):
         raise NotImplementedError
 
     @pyqtSlot()
-    def on_NodeBootWalletAddress_editingFinished(self):
+    def on_ResetNode_2_clicked(self):
         """
         Slot documentation goes here.
         """
@@ -343,13 +326,38 @@ class MATRIXTabWidget(QTabWidget, Ui_TabWidget):
         raise NotImplementedError
 
     @pyqtSlot()
-    def on_AutoCloseWalletCheckBox_2_clicked(self):
+    def on_OpenExplorerWallet_clicked(self):
         """
         Slot documentation goes here.
         """
         # TODO: not implemented yet
         raise NotImplementedError
 
+    @pyqtSlot()
+    def on_OpenExplorerAccount_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+        # TODO: not implemented yet
+        raise NotImplementedError
+
+    @pyqtSlot()
+    def on_CheckNodeSyncNTP_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+        # TODO: not implemented yet
+        raise NotImplementedError
+
+    @pyqtSlot()
+    def on_UploadLog_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+        # TODO: not implemented yet
+        raise NotImplementedError
+        
+    
     @pyqtSlot()
     def on_GenerateRandomAccountAddress_clicked(self):
         """
@@ -357,47 +365,99 @@ class MATRIXTabWidget(QTabWidget, Ui_TabWidget):
         """
         # TODO: not implemented yet
         raise NotImplementedError
-
+    
     @pyqtSlot()
-    def on_NewNodeDepoly_2_clicked(self):
+    def on_NodeInit_clicked(self):
         """
         Slot documentation goes here.
         """
         # TODO: not implemented yet
         raise NotImplementedError
-
+    
     @pyqtSlot()
-    def on_wallet_destroyed(self):
+    def on_UseDefaultA1Account_clicked(self):
         """
         Slot documentation goes here.
         """
         # TODO: not implemented yet
         raise NotImplementedError
-
+    
     @pyqtSlot()
-    def on_WalletAddress_editingFinished(self):
+    def on_NodeBootWalletAddress_editingFinished(self):
         """
         Slot documentation goes here.
         """
         # TODO: not implemented yet
         raise NotImplementedError
-
+    
     @pyqtSlot()
-    def on_OpenOnlineWallet_clicked(self):
+    def on_DeployMinerNode_clicked(self):
         """
         Slot documentation goes here.
         """
         # TODO: not implemented yet
         raise NotImplementedError
-
-
-if __name__ == "__main__":
-    import sys
-
-    app = QtWidgets.QApplication(sys.argv)
-    TabWidget = QtWidgets.QTabWidget()
-#    ui = Ui_TabWidget()
-    ui = MATRIXTabWidget()
-    ui.setupUi(TabWidget)
-    TabWidget.show()
-    sys.exit(app.exec_())
+    
+    @pyqtSlot()
+    def on_StopNode_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+        # TODO: not implemented yet
+        raise NotImplementedError
+    
+    @pyqtSlot()
+    def on_FollowSuperNode_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+        # TODO: not implemented yet
+        raise NotImplementedError
+    
+    @pyqtSlot()
+    def on_Fixed1MradioButton_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+        # TODO: not implemented yet
+        raise NotImplementedError
+    
+    @pyqtSlot()
+    def on_CreateSuperNode_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+        # TODO: not implemented yet
+        raise NotImplementedError
+    
+    @pyqtSlot()
+    def on_NormalNode_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+        # TODO: not implemented yet
+        raise NotImplementedError
+    
+    @pyqtSlot()
+    def on_GenerateA1_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+        # TODO: not implemented yet
+        raise NotImplementedError
+    
+    @pyqtSlot()
+    def on_OpenWallet_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+        # TODO: not implemented yet
+        raise NotImplementedError
+    
+    @pyqtSlot()
+    def on_AutoCloseWallet_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+        # TODO: not implemented yet
+        raise NotImplementedError

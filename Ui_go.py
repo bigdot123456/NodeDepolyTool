@@ -36,6 +36,8 @@ class Ui_MainWindow(object):
         self.pushButton.setText(_translate("MainWindow", "点击生效"))
 
 
+
+
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
